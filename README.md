@@ -4,7 +4,7 @@ My user manuals
 
 ## Organization
 
-Just a bunch of files in directories, which maybe some READMEs.
+Just a bunch of files in directories, with maybe some READMEs.
 
 I have considered other options:
 
@@ -12,3 +12,12 @@ I have considered other options:
 - *Tagging* - there does not seem to be any standard for tagging these files.
 
 So I'm just going to make it up as I go along.
+
+## meta.toml
+
+- TOML ftw!
+- A `meta.toml` file in each directory.
+- Top keys are the basenames of the PDFs.
+- Next levels keys are metadata:
+    - `original-filename` is the filename produced by the Brother scanner.  It'd be cool to derive any data from this, like the scan date/time.
+    - `tags` is a list of tags.  There are no standard tags yet, hahaha.
