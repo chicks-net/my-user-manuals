@@ -1,6 +1,6 @@
 # my-user-manuals
 
-My user manuals
+My user manuals, scanned in, so I can stop looking at this pile of paper!
 
 ## Organization
 
@@ -10,6 +10,7 @@ I have considered other options:
 
 - *Digital Asset Management* - the most popular solutions are PHP based and I just can't do that.
 - *Tagging* - there does not seem to be any standard for tagging these files.
+- *Document Management Systems* - I [looked for one](https://softwarerecs.stackexchange.com/q/43455/16331) and failed.
 
 So I'm just going to make it up as I go along.
 
