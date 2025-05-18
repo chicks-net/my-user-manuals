@@ -14,6 +14,10 @@ I have considered other options:
 
 So I'm just going to make it up as I go along.
 
+## Requirements
+
+* [git-lfs](https://git-lfs.com/)
+
 ## meta.toml
 
 - TOML ftw!
@@ -22,3 +26,7 @@ So I'm just going to make it up as I go along.
 - Next levels keys are metadata:
     - `original-filename` is the filename produced by the Brother scanner.  It'd be cool to derive any data from this, like the scan date/time.
     - `tags` is a list of tags.  There are no standard tags yet, hahaha.
+
+## Thanks
+
+* Thanks to https://apple.stackexchange.com/q/230437/210526 for giving a command line way to combine PDFs.
