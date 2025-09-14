@@ -39,7 +39,7 @@ most distracting.  But it was the best that I could figure out how to
 do, so I sent it back to the fine maintainer of the Color Computer Archive.
 
 Months pass.  Retrocomputing people are either not in a hurry or they are
-very busy, but that beside the point.  After I had stopped looking for any
+very busy, but that is beside the point.  After I had stopped looking for any
 reply, I heard back.  And they had cleaned up the PDF by hand and produced
 [the most glorious version](<https://colorcomputerarchive.com/repo/Documents/Manuals/Hardware/Gemini%2010X-15X%20User's%20Manual%20(Star%20Micronics).pdf>)
 yet.  I'm calling this the
