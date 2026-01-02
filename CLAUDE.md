@@ -33,13 +33,15 @@ TOML files with metadata about PDF manuals:
 - Top-level keys are PDF basenames (without .pdf extension)
 - Each entry contains:
   - `original-filename`: The filename from the Brother scanner
+  - `source`: Optional URL where the PDF was downloaded from
   - `tags`: Array of tags (no standard tagging system yet)
 
 Example:
 
 ```toml
-[magnifying-light-10x]
-original-filename = "20250428222848_001.pdf"
+[MOD007B_HE_manual]
+original-filename = "MOD007B_HE.pdf"
+source = "https://file.akkogear.com/MOD007B_HE.pdf"
 ```
 
 ## Common Commands
@@ -49,6 +51,7 @@ original-filename = "20250428222848_001.pdf"
 - `just list` - List all available just recipes
 - `just compliance_check` - Run the custom compliance checker (verifies
   README, LICENSE, GitHub files, etc.)
+- `just shellcheck` - Run shellcheck on all bash scripts in just recipes
 
 ### Git Workflow (via just)
 
@@ -57,9 +60,16 @@ original-filename = "20250428222848_001.pdf"
 - `just pr` - Create a pull request with automatic title/body from commits
 - `just pr_checks` - Watch GitHub Actions and check for Copilot/Claude
   suggestions
+- `just pr_update` - Update the Done section of PR description with current
+  commits
+- `just pr_verify` - Add or append to Verify section from stdin
+- `just again` - Push changes, update PR description, and watch GHAs (for
+  iterative development)
 - `just prweb` - Open the PR in a web browser
 - `just merge` - Merge the PR, delete branch, and return to main
 - `just sync` - Return to main branch and pull latest changes
+- `just release <version>` - Create a new release with generated notes
+- `just release_age` - Check how long ago the last release was
 
 The workflow uses `main` as the release branch.
 
