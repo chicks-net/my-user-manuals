@@ -1,8 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(markdownlint-cli2:*)",
-      "Bash(just list:*)"
+      "Bash(just list:*)",
+      "Bash(markdownlint-cli2:*)"
     ],
     "deny": [],
     "ask": []

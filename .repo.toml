@@ -1,0 +1,15 @@
+# .repo.toml
+
+[about]
+description = "My user manuals 📚"
+topics = ["commodore", "documentation", "fairuse", "terminal", "usermanual"]
+
+[urls]
+git_ssh = "git@github.com:chicks-net/my-user-manuals.git"
+web_url = "https://github.com/chicks-net/my-user-manuals"
+
+[flags]
+claude = true
+claude-review = true
+copilot-review = true
+standard-release = true
