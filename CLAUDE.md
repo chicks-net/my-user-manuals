@@ -28,13 +28,21 @@ directories (Computer, Office, Bathroom, Garage, Sewing, etc.).
 
 ### meta.toml Format
 
-TOML files with metadata about PDF manuals:
+TOML files with metadata about PDF manuals. Each meta.toml lives next to the
+PDFs it describes and is validated against `docs/meta-toml.cue` by
+`just cue-verify` (see [CUE Validation](#cue-validation)).
 
-- Top-level keys are PDF basenames (without .pdf extension)
+- Top-level keys are PDF basenames (without `.pdf` extension); a matching
+  `<basename>.pdf` must exist in the same directory
 - Each entry contains:
-  - `original-filename`: The filename from the Brother scanner
+  - `original-filename`: The filename from the Brother scanner or download
+    (required, must end in `.pdf`)
   - `source`: Optional URL where the PDF was downloaded from
-  - `tags`: Array of tags (no standard tagging system yet)
+  - `manufacturer-model`: Optional manufacturer/model identifier for the device
+  - `tags`: Optional array of tags (no standard tagging system yet)
+
+The CUE schema permits additional future fields, but the four above are the
+known ones. Free-text `#` comments are allowed and ignored by the validator.
 
 Example:
 
@@ -52,6 +60,16 @@ source = "https://file.akkogear.com/MOD007B_HE.pdf"
 - `just compliance_check` - Run the custom compliance checker (verifies
   README, LICENSE, GitHub files, etc.)
 - `just shellcheck` - Run shellcheck on all bash scripts in just recipes
+
+### CUE Validation
+
+- `just cue-verify` - Validate `.repo.toml` against `docs/repo-toml.cue` and
+  every `meta.toml` against `docs/meta-toml.cue`, then cross-check that each
+  declared PDF basename exists on disk. Runs in CI via
+  `.github/workflows/cue-verify.yml` (path-filtered to TOML/CUE/justfile
+  changes).
+- `just cue-verify-meta` - Run only the `meta.toml` validation and PDF
+  cross-check stage.
 
 ### Git Workflow (via just)
 

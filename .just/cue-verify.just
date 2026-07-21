@@ -127,6 +127,61 @@ cue-verify:
 
     echo "{{GREEN}}Flag verification passed.{{NORMAL}}"
 
+    # Stage 4: Validate all meta.toml files against docs/meta-toml.cue and
+    # cross-check that each declared PDF basename exists on disk next to the
+    # meta.toml that declares it. Delegated to a standalone recipe so it can
+    # also be run on its own: `just cue-verify-meta`.
+    just cue-verify-meta
+
+# use Cue to verify every meta.toml under the category directories against
+# docs/meta-toml.cue, and cross-check that each top-level key [basename] has a
+# matching <basename>.pdf on disk in the same directory as the meta.toml.
+[group('Testing/Compliance')]
+cue-verify-meta:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    SCHEMA="docs/meta-toml.cue"
+    ERRORS=0
+    META_COUNT=0
+
+    # Discover every meta.toml under the repo, excluding .git.
+    while IFS= read -r -d '' META; do
+        META_COUNT=$((META_COUNT + 1))
+        DIR="$(dirname "$META")"
+
+        # Stage A: structural validation against the CUE schema.
+        if ! cue vet "$META" "$SCHEMA"; then
+            echo "{{RED}}[$META] CUE schema validation failed{{NORMAL}}"
+            ERRORS=$((ERRORS + 1))
+            # Skip the cross-check: keys may not even be parseable.
+            continue
+        fi
+
+        # Stage B: every top-level key [basename] must have a <basename>.pdf
+        # sitting next to this meta.toml. `cue export` emits the keys as a JSON
+        # object, so jq -r 'keys[]' gives us the basenames.
+        for BASE in $(cue export "$META" | jq -r 'keys[]'); do
+            PDF="$DIR/$BASE.pdf"
+            if [[ ! -f "$PDF" ]]; then
+                echo "{{RED}}[$META] missing $BASE.pdf (declared as [$BASE]){{NORMAL}}"
+                ERRORS=$((ERRORS + 1))
+            fi
+        done
+    done < <(find . -name meta.toml -not -path './.git/*' -print0)
+
+    if [[ $META_COUNT -eq 0 ]]; then
+        echo "{{YELLOW}}No meta.toml files found.{{NORMAL}}"
+    fi
+
+    if [[ $ERRORS -gt 0 ]]; then
+        echo ""
+        echo "{{RED}}meta.toml verification failed with $ERRORS error(s) across $META_COUNT file(s){{NORMAL}}"
+        exit 1
+    fi
+
+    echo "{{GREEN}}meta.toml verification passed ($META_COUNT file(s)).{{NORMAL}}"
+
 # sync description and topics from GitHub API into .repo.toml
 [group('Template Maintenance')]
 cue-sync-from-github:
