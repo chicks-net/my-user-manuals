@@ -36,15 +36,17 @@ PDFs it describes and is validated against `docs/meta-toml.cue` by
   `<basename>.pdf` must exist in the same directory. Basenames containing
   dots (e.g. `Microcom_Deskport_28.8s_14.4s_users_guide`) must be quoted
   as TOML strings so the dots are not parsed as nested-key separators
-- Each entry contains:
+- Each entry contains at least one of these two provenance fields
+  (both may be present):
   - `original-filename`: The filename from the Brother scanner or download
-    (optional, must end in `.pdf`). Either a plain string for a single
-    source file, or an array of strings for a multi-scan merge (one
-    catalog PDF assembled from several Brother scanner outputs, in scan
-    order). Absent for derivative PDFs (e.g. ImageMagick-processed or
-    hand-cleaned) with no preserved scanner filename; such entries
-    should carry a `source` URL instead
-  - `source`: Optional URL where the PDF was downloaded from
+    (optional when `source` is present, must end in `.pdf`). Either a plain
+    string for a single source file, or an array of strings for a multi-scan
+    merge (one catalog PDF assembled from several Brother scanner outputs,
+    in scan order). Absent for derivative PDFs (e.g. ImageMagick-processed
+    or hand-cleaned) with no preserved scanner filename; such entries must
+    carry a `source` URL instead
+  - `source`: URL where the PDF was downloaded from. Required when
+    `original-filename` is absent; optional otherwise
   - `manufacturer-model`: Optional manufacturer/model identifier for the device
   - `tags`: Optional array of tags (no standard tagging system yet)
   - `scan-time`: Optional RFC 3339 scan-start timestamp with a timezone
@@ -55,9 +57,12 @@ PDFs it describes and is validated against `docs/meta-toml.cue` by
     scanner outputs; absent for downloaded or derivative PDFs. Always a
     scalar even when `original-filename` is an array
 
-The CUE schema permits additional future fields, but the five above are
-the known ones. Free-text `#` comments are allowed and ignored by the
-validator.
+The "at least one of `original-filename` or `source`" rule is enforced
+by a jq check in the `just cue-verify-meta` recipe (CUE cannot express
+field-presence disjunctions without producing "incomplete value"
+errors, so the schema only types the fields). The CUE schema permits
+additional future fields. Free-text `#` comments are allowed and
+ignored by the validator.
 
 Example (single-scan download):
 
