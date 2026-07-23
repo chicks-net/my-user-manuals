@@ -1,0 +1,27 @@
+[HP928]
+original-filename = "hp928_terminal_20240818210757_001.pdf"
+manufacturer-model = "HP 928"
+scan-time = "2024-08-18T21:07:57-04:00"
+tags = ["terminal", "HP"]
+
+[IDEA_471_472_572_displays]
+original-filename = [
+  "IDEA_471_472_572_displays_a_20240819012444_001.pdf",
+  "IDEA_471_472_572_displays_b_20240819013214_001.pdf",
+  "IDEA_471_472_572_displays_c_20240819020814_001.pdf",
+  "IDEA_471_472_572_displays_d_20240819021221_001.pdf",
+  "IDEA_471_472_572_displays_e_20240819021517_001.pdf",
+  "IDEA_471_472_572_displays_refcard_20240819021835_001.pdf",
+]
+manufacturer-model = "IDEA 471 / 472 / 572"
+scan-time = "2024-08-19T01:24:44-04:00"
+tags = ["terminal", "IDEA"]
+
+[TI924_terminal]
+original-filename = [
+  "ti924_terminal_a_20240818211438_001.pdf",
+  "ti924_terminal_b_20240818211801_001.pdf",
+]
+manufacturer-model = "TI 924"
+scan-time = "2024-08-18T21:14:38-04:00"
+tags = ["terminal", "TI"]

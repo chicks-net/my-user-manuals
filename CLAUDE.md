@@ -33,23 +33,52 @@ PDFs it describes and is validated against `docs/meta-toml.cue` by
 `just cue-verify` (see [CUE Validation](#cue-validation)).
 
 - Top-level keys are PDF basenames (without `.pdf` extension); a matching
-  `<basename>.pdf` must exist in the same directory
+  `<basename>.pdf` must exist in the same directory. Basenames containing
+  dots (e.g. `Microcom_Deskport_28.8s_14.4s_users_guide`) must be quoted
+  as TOML strings so the dots are not parsed as nested-key separators
 - Each entry contains:
   - `original-filename`: The filename from the Brother scanner or download
-    (required, must end in `.pdf`)
+    (optional, must end in `.pdf`). Either a plain string for a single
+    source file, or an array of strings for a multi-scan merge (one
+    catalog PDF assembled from several Brother scanner outputs, in scan
+    order). Absent for derivative PDFs (e.g. ImageMagick-processed or
+    hand-cleaned) with no preserved scanner filename; such entries
+    should carry a `source` URL instead
   - `source`: Optional URL where the PDF was downloaded from
   - `manufacturer-model`: Optional manufacturer/model identifier for the device
   - `tags`: Optional array of tags (no standard tagging system yet)
+  - `scan-time`: Optional RFC 3339 scan-start timestamp with a timezone
+    offset (e.g. `2025-11-12T01:36:46-05:00`), recovered from the first
+    Brother scanner filename's `YYYYMMDDHHMMSS` clock plus the offset
+    derived from the PDF's `/CreationDate` per
+    `docs/brother-ads-4900w-filenames.md`. Only present for direct
+    scanner outputs; absent for downloaded or derivative PDFs. Always a
+    scalar even when `original-filename` is an array
 
-The CUE schema permits additional future fields, but the four above are the
-known ones. Free-text `#` comments are allowed and ignored by the validator.
+The CUE schema permits additional future fields, but the five above are
+the known ones. Free-text `#` comments are allowed and ignored by the
+validator.
 
-Example:
+Example (single-scan download):
 
 ```toml
 [MOD007B_HE_manual]
 original-filename = "MOD007B_HE.pdf"
 source = "https://file.akkogear.com/MOD007B_HE.pdf"
+```
+
+Example (multi-scan merge with scan-time):
+
+```toml
+[Microcom_QX_4232bis]
+original-filename = [
+  "Microcom_QX_4232bis_a_20260721213625_001.pdf",
+  "Microcom_QX_4232bis_b_20260721214039_001.pdf",
+  "Microcom_QX_4232bis_c_20260721214359_001.pdf",
+]
+manufacturer-model = "Microcom QX 4232bis"
+scan-time = "2026-07-21T21:36:25-04:00"
+tags = ["modem", "Microcom"]
 ```
 
 ## Common Commands
