@@ -161,13 +161,28 @@ cue-verify-meta:
         # Stage B: every top-level key [basename] must have a <basename>.pdf
         # sitting next to this meta.toml. `cue export` emits the keys as a JSON
         # object, so jq -r 'keys[]' gives us the basenames.
-        for BASE in $(cue export "$META" | jq -r 'keys[]'); do
+        EXPORTED=$(cue export "$META")
+        for BASE in $(echo "$EXPORTED" | jq -r 'keys[]'); do
             PDF="$DIR/$BASE.pdf"
             if [[ ! -f "$PDF" ]]; then
                 echo "{{RED}}[$META] missing $BASE.pdf (declared as [$BASE]){{NORMAL}}"
                 ERRORS=$((ERRORS + 1))
             fi
         done
+
+        # Stage C: every entry must carry at least one provenance field:
+        # `original-filename` or `source`. CUE cannot express "at least one
+        # of two optional fields" as a disjunction (field-presence
+        # disjunctions produce "incomplete value" errors under concrete
+        # evaluation), so this is enforced here via jq instead.
+        while IFS= read -r BASE; do
+            HAS_OFN=$(echo "$EXPORTED" | jq -r --arg k "$BASE" '.[$k] | has("original-filename")')
+            HAS_SRC=$(echo "$EXPORTED" | jq -r --arg k "$BASE" '.[$k] | has("source")')
+            if [[ "$HAS_OFN" != "true" && "$HAS_SRC" != "true" ]]; then
+                echo "{{RED}}[$META] $BASE has neither original-filename nor source (at least one required){{NORMAL}}"
+                ERRORS=$((ERRORS + 1))
+            fi
+        done < <(echo "$EXPORTED" | jq -r 'keys[]')
     done < <(find . -name meta.toml -not -path './.git/*' -print0)
 
     if [[ $META_COUNT -eq 0 ]]; then

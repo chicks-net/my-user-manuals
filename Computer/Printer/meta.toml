@@ -1,0 +1,56 @@
+[Cardprint_Commodore_printer_interface]
+original-filename = "commodore_printer_interface_cardprint_20240823220447_001.pdf"
+manufacturer-model = "Cardprint Commodore printer interface"
+scan-time = "2024-08-23T22:04:47-04:00"
+tags = ["printer", "Commodore"]
+
+[Epson_FX-650_1050_Users_Manual]
+original-filename = [
+  "Epson_FX-650_1050_Users_Manual_a_20240827205404_001.pdf",
+  "Epson_FX-650_1050_Users_Manual_b_20240827210554_001.pdf",
+  "Epson_FX-650_1050_Users_Manual_c_20240827211229_001.pdf",
+  "Epson_FX-650_1050_Users_Manual_d_20240827211317_001.pdf",
+]
+manufacturer-model = "Epson FX-650 / FX-1050"
+scan-time = "2024-08-27T20:54:04-04:00"
+tags = ["printer", "Epson"]
+
+[LaserJet_III_Technical_Reference_Manual]
+original-filename = [
+  "LaserJet_III_Technical_Reference_Manual_a_20240828204926_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_b_20240828205517_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_c_20240828205900_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_d_20240828213802_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_e_20240828214257_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_f_20240828215531_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_g_20240828220714_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_h_20240828221436_001.pdf",
+  "LaserJet_III_Technical_Reference_Manual_i_20240828222012_001.pdf",
+]
+manufacturer-model = "HP LaserJet III"
+scan-time = "2024-08-28T20:49:26-04:00"
+tags = ["printer", "HP", "LaserJet"]
+
+# Author's own Brother scanner output, unprocessed. 72M. The filename was not
+# preserved when the PDF was re-saved through macOS Preview, so the Brother
+# timestamp below is reconstructed from the PDF /CreationDate
+# (2024-08-27 22:10:42 EDT, per docs/brother-ads-4900w-filenames.md).
+[Star_Gemini_10x15x_User_Manual_raw]
+original-filename = "Star_Gemini_10x15x_User_Manual_raw_20240827221042_001.pdf"
+manufacturer-model = "Star Gemini 10x"
+scan-time = "2024-08-27T22:10:42-04:00"
+tags = ["printer", "Star"]
+
+# ImageMagick-cleaned per superuser.com/q/622950; better contrast but 5x size.
+# Derivative of the raw scan above -- the SuperUser thread is the method
+# provenance, not a download source for this PDF.
+[Star_Gemini_10x15x_User_Manual_brighter]
+source = "https://superuser.com/q/622950"
+manufacturer-model = "Star Gemini 10x"
+tags = ["printer", "Star"]
+
+# Hand-cleaned by the TRS-80 Color Computer Archive maintainer; smallest and best.
+[Star_Gemini_10x15x_User_Manual_cocoarchive]
+source = "https://colorcomputerarchive.com/repo/Documents/Manuals/Hardware/Gemini%2010X-15X%20User's%20Manual%20(Star%20Micronics).pdf"
+manufacturer-model = "Star Gemini 10x"
+tags = ["printer", "Star"]

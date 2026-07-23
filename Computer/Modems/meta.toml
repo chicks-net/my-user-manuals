@@ -1,0 +1,55 @@
+[Adtran_TSU_Users_Manual]
+original-filename = "Adtran_TSU_Users_Manual_20251117022348_001.pdf"
+manufacturer-model = "Adtran TSU"
+scan-time = "2025-11-17T02:23:48-05:00"
+tags = ["modem", "T1/DSU", "Adtran"]
+
+[Hayes_Smartcom_III_Program_Overview]
+original-filename = "Smartcom_III_Program_Overview_20260720031557_001.pdf"
+manufacturer-model = "Hayes Smartcom III"
+scan-time = "2026-07-20T03:15:57-04:00"
+tags = ["modem", "Hayes"]
+
+[Hayes_Smartcom_III_SCOPE_Reference_Guide]
+original-filename = [
+  "Smartcom_III_SCOPE_Reference_Guide_a_20260720031649_001.pdf",
+  "Smartcom_III_SCOPE_Reference_Guide_b_20260720032233_001.pdf",
+]
+manufacturer-model = "Hayes Smartcom III"
+scan-time = "2026-07-20T03:16:49-04:00"
+tags = ["modem", "Hayes"]
+
+[Hayes_Smartcom_III_Users_Guide]
+original-filename = [
+  "Smartcom_III_Users_Guide_a_20260720025804_001.pdf",
+  "Smartcom_III_Users_Guide_b_20260720030449_001.pdf",
+  "Smartcom_III_Users_Guide_c_20260720030836_001.pdf",
+]
+manufacturer-model = "Hayes Smartcom III"
+scan-time = "2026-07-20T02:58:04-04:00"
+tags = ["modem", "Hayes"]
+
+["Microcom_Deskport_28.8s_14.4s_users_guide"]
+original-filename = "Microcom_Deskport_28.8s_14.4s_users_guide_20251112013646_001.pdf"
+manufacturer-model = "Microcom DeskPorte 28.8s"
+scan-time = "2025-11-12T01:36:46-05:00"
+tags = ["modem", "dial-up", "Microcom"]
+
+[Microcom_QX_4232bis]
+original-filename = [
+  "Microcom_QX_4232bis_a_20260721213625_001.pdf",
+  "Microcom_QX_4232bis_b_20260721214039_001.pdf",
+  "Microcom_QX_4232bis_c_20260721214359_001.pdf",
+]
+manufacturer-model = "Microcom QX 4232bis"
+scan-time = "2026-07-21T21:36:25-04:00"
+tags = ["modem", "Microcom"]
+
+[Transcend_SixtySeven]
+original-filename = [
+  "Transcend_SixtySeven_a_20260721205121_001.pdf",
+  "Transcend_SixtySeven_b_20260721205419_001.pdf",
+]
+manufacturer-model = "Transcend SixtySeven"
+scan-time = "2026-07-21T20:51:21-04:00"
+tags = ["modem", "Transcend"]
