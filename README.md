@@ -26,8 +26,10 @@ So I'm just going to make it up as I go along.
 - A `meta.toml` file in each directory.
 - Top keys are the basenames of the PDFs.
 - Next levels keys are metadata:
-  - `original-filename` is the filename produced by the Brother scanner.  It'd
-    be cool to derive any data from this, like the scan date/time.
+  - `original-filename` is the filename produced by the Brother scanner.  The
+    filename embeds the scan-start timestamp; see
+    [docs/brother-ads-4900w-filenames.md](docs/brother-ads-4900w-filenames.md)
+    for the format and the PDF metadata quirks.
   - `tags` is a list of tags.  There are no standard tags yet, hahaha.
 
 ## Thanks
