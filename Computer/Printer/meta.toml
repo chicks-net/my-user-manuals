@@ -31,15 +31,21 @@ manufacturer-model = "HP LaserJet III"
 scan-time = "2024-08-28T20:49:26-04:00"
 tags = ["printer", "HP", "LaserJet"]
 
-# Author's own Brother scanner output, unprocessed. 72M.
+# Author's own Brother scanner output, unprocessed. 72M. The filename was not
+# preserved when the PDF was re-saved through macOS Preview, so the Brother
+# timestamp below is reconstructed from the PDF /CreationDate
+# (2024-08-27 22:10:42 EDT, per docs/brother-ads-4900w-filenames.md).
 [Star_Gemini_10x15x_User_Manual_raw]
-source = "https://colorcomputerarchive.com/repo/Documents/Manuals/Hardware/Gemini%2010X-15X%20User's%20Manual%20(Star%20Micronics).pdf"
+original-filename = "Star_Gemini_10x15x_User_Manual_raw_20240827221042_001.pdf"
 manufacturer-model = "Star Gemini 10x"
+scan-time = "2024-08-27T22:10:42-04:00"
 tags = ["printer", "Star"]
 
 # ImageMagick-cleaned per superuser.com/q/622950; better contrast but 5x size.
+# Derivative of the raw scan above -- the SuperUser thread is the method
+# provenance, not a download source for this PDF.
 [Star_Gemini_10x15x_User_Manual_brighter]
-source = "https://colorcomputerarchive.com/repo/Documents/Manuals/Hardware/Gemini%2010X-15X%20User's%20Manual%20(Star%20Micronics).pdf"
+source = "https://superuser.com/q/622950"
 manufacturer-model = "Star Gemini 10x"
 tags = ["printer", "Star"]
 
