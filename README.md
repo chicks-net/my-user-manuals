@@ -32,6 +32,9 @@ So I'm just going to make it up as I go along.
     for the format and the PDF metadata quirks.
   - `tags` is a list of tags.  There are no standard tags yet, hahaha.
 
+See [docs/meta-toml.md](docs/meta-toml.md) for the full field reference,
+worked examples, and how to validate.
+
 ## Thanks
 
 - Thanks to [Apple.StackExchange](https://apple.stackexchange.com/q/230437/210526)
