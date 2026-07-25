@@ -11,7 +11,7 @@ brand.
 - **Pittsburgh** - hand tools (wrenches, sockets, pliers)
 - **Pittsburgh Pro** - automotive/mechanics' hand tools
 - **ICON** - premium hand and automotive tools
-- [**Bauer**](Bauery) - 20V cordless and corded power tools
+- [**Bauer**](Bauer) - 20V cordless and corded power tools
 - **Hercules** - premium 20V/24V cordless power tools
 - **Warrior** - budget hand and power tools
 - **Drill Master** - budget corded/cordless power tools
