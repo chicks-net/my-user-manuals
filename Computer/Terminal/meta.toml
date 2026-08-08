@@ -34,3 +34,19 @@ original-filename = [
   "NCR_4970_Terminal_Guide_To_Operations_d_20260801161542_001.pdf"
 ]
 scan-time = "2026-08-01T16:03:34+01:00"
+
+[Basic_Four_Model_7270_Video_Display_Terminal_Service_Manual]
+original-filename = [
+  "Basic_Four_Model_7270_Video_Display_Terminal_Service_Manual_a_20260727020839_001.pdf",
+  "Basic_Four_Model_7270_Video_Display_Terminal_Service_Manual_b_20260727021214_001.pdf",
+  "Basic_Four_Model_7270_Video_Display_Terminal_Service_Manual_c_20260727021427_001.pdf"
+]
+scan-time = "2026-07-27T02:08:39+01:00"
+
+[Basic_Four_System_S10_Office_Display_Terminal_Service_Manual]
+original-filename = [
+  "Basic_Four_System_S10_Office_Display_Terminal_Service_Manual_a_20260727014657_001.pdf",
+  "Basic_Four_System_S10_Office_Display_Terminal_Service_Manual_b_20260727015048_001.pdf",
+  "Basic_Four_System_S10_Office_Display_Terminal_Service_Manual_c_20260727020051_001.pdf"
+]
+scan-time = "2026-07-27T01:46:57+01:00"
