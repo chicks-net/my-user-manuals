@@ -53,3 +53,10 @@ original-filename = [
 manufacturer-model = "Transcend SixtySeven"
 scan-time = "2026-07-21T20:51:21-04:00"
 tags = ["modem", "Transcend"]
+
+[Intel_9600bps_Modem_Command_Guide]
+original-filename = [
+  "Intel_9600bps_Modem_Command_Guide_a_20260801151347_001.pdf",
+  "Intel_9600bps_Modem_Command_Guide_b_20260801151814_001.pdf"
+]
+scan-time = "2026-08-01T15:13:47+01:00"
