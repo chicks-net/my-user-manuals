@@ -25,3 +25,12 @@ original-filename = [
 manufacturer-model = "TI 924"
 scan-time = "2024-08-18T21:14:38-04:00"
 tags = ["terminal", "TI"]
+
+[NCR_4970_Terminal_Guide_To_Operations]
+original-filename = [
+  "NCR_4970_Terminal_Guide_To_Operations_a_20260801160334_001.pdf",
+  "NCR_4970_Terminal_Guide_To_Operations_b_20260801160808_001.pdf",
+  "NCR_4970_Terminal_Guide_To_Operations_c_20260801161125_001.pdf",
+  "NCR_4970_Terminal_Guide_To_Operations_d_20260801161542_001.pdf"
+]
+scan-time = "2026-08-01T16:03:34+01:00"
