@@ -2,7 +2,7 @@
 # provenance in that directory's meta.toml.
 #
 # Usage:
-#   just add-manual <url> <dir> [basename]
+#   just add-manual-url <url> <dir> [basename]
 #
 # Arguments:
 #   url      Source URL (http:// or https://). Required.
@@ -46,12 +46,12 @@ add-manual-url url dir basename='':
 
     if [[ -z "$URL" ]]; then
         echo "{{RED}}Error: url is required.{{NORMAL}}" >&2
-        echo "Usage: just add-manual <url> <dir> [basename]" >&2
+        echo "Usage: just add-manual-url <url> <dir> [basename]" >&2
         exit 1
     fi
     if [[ -z "$DIR" ]]; then
         echo "{{RED}}Error: dir is required.{{NORMAL}}" >&2
-        echo "Usage: just add-manual <url> <dir> [basename]" >&2
+        echo "Usage: just add-manual-url <url> <dir> [basename]" >&2
         exit 1
     fi
 
@@ -89,6 +89,15 @@ add-manual-url url dir basename='':
     if [[ -z "$BASENAME" ]]; then
         # Default: original-filename with its .pdf/.PDF extension stripped.
         BASENAME="${ORIG_FILENAME%.*}"
+    fi
+
+    # Reject a basename containing a path separator (mirrors add-manual-zip).
+    # An explicit basename like "../elsewhere/foo" would otherwise resolve the
+    # PDF path (and the later git add) outside the target category directory.
+    if [[ "$BASENAME" == */* ]]; then
+        echo "{{RED}}Error: basename contains a path separator: $BASENAME{{NORMAL}}" >&2
+        echo "Pass a different basename." >&2
+        exit 1
     fi
 
     # A basename containing dots would be parsed by TOML as nested keys, so
@@ -214,9 +223,11 @@ add-manual-url url dir basename='':
 #     order. Non-PDF files are ignored.
 #   - Derives the basename from the longest common prefix of the PDF stems
 #     (filename with directory and .pdf stripped), then trims trailing
-#     _-. <space> characters. For a single-PDF zip, the scanner suffix is
-#     also stripped so e.g. "Foo_20251117022348_001.pdf" yields basename
-#     "Foo".
+#     _-. <space> characters. The Brother scanner suffix
+#     (_YYYYMMDDHHMMSS_NNN) is also stripped -- this applies to both single-
+#     and multi-PDF cases (the common-prefix step leaves the suffix on the
+#     last stem when the prefix itself ends in the scanner clock), so e.g.
+#     "Foo_20251117022348_001.pdf" yields basename "Foo".
 #   - Merges all PDFs into <dir>/<basename>.pdf via `pdfunite` (poppler).
 #     A single-PDF zip is copied directly (no merge). Both poppler's
 #     pdfunite and exiftool must be on PATH.
@@ -366,6 +377,9 @@ add-manual-zip zip dir basename='':
             common="${common%?}"
         done
         BASENAME="$common"
+        BASENAME_DERIVED=1
+    else
+        BASENAME_DERIVED=0
     fi
 
     # Strip a trailing Brother scanner suffix from the basename if present.
@@ -376,6 +390,21 @@ add-manual-zip zip dir basename='':
     if [[ "$BASENAME" =~ _[0-9]{14}_[0-9]{3}$ ]]; then
         BASENAME="${BASENAME%_*}"  # drop _NNN
         BASENAME="${BASENAME%_*}"  # drop _YYYYMMDDHHMMSS
+    fi
+
+    # Derived-basename sanity: if the common-prefix walk stopped mid-timestamp
+    # (e.g. same job re-scanned a few seconds apart with no letter infix), the
+    # trailing digit run survives the suffix strip and yields a garbled key like
+    # "Foo_2026010112000". Reject it so the operator passes an explicit basename
+    # rather than silently recording a bad key. A run of >=6 trailing digits
+    # with a non-digit preceding it is the telltale; only fire when the basename
+    # was derived (an explicit numeric-suffixed basename is allowed).
+    if [[ "${BASENAME_DERIVED:-0}" == "1" \
+          && "$BASENAME" =~ [^0-9][0-9]{6,}$ ]]; then
+        echo "{{RED}}Error: derived basename ends in a run of digits ($BASENAME);" >&2
+        echo "likely a truncated scanner clock. Pass an explicit basename:" >&2
+        echo "  just add-manual-zip <zip> <dir> <basename>" >&2
+        exit 1
     fi
 
     # Final sanity: basename must be non-empty and free of path separators.
