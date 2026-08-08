@@ -7,6 +7,5 @@ what I've found here.
 
 ## Manuals
 
-* [samsung-dcsc-program.pdf](samsung-dcsc-program.pdf)
-  Samsung DCS / OfficeServ programming guide, mirrored from
-  <https://telephonesystemsdirect.com/pdf/samsung-dcsc-program.pdf>
+- [Samsung DCS / OfficeServ programming guide](samsung-dcsc-program.pdf)
+  mirrored from <https://telephonesystemsdirect.com/pdf/samsung-dcsc-program.pdf>
